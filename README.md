@@ -11,16 +11,15 @@
     output: {
     path: config.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
-  },
-    ```
+  }
     变成：
-    ```
     output: {
     path: config.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
-  },
+  }
     ```
+
     然后到router文件夹里找到index.js文件，要切割的组件引入写法：
     ```
 
@@ -38,7 +37,7 @@
     const Hello = () => import('@/components/Hello')
     const topSide = () => import('@/components/topSide')
 
-
     ```
 
-    然后打包，我们就会发现js文件多了两个 0.[hash].js和1.[hash].js文件，这就是切割出来的代码。只要用户继续操作进入相应的路由，这两个文件才会请求加载。
+然后打包，我们就会发现js文件多了两个 0.[hash].js和1.[hash].js文件，
+    这就是切割出来的代码。只要用户继续操作进入相应的路由，这两个文件才会请求加载。
