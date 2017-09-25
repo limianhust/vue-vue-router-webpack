@@ -8,19 +8,19 @@
 
 ## Quick Start
 
-Install the Rax CLI tools to init project:
+Install dependencies to init project:
 
 
-		```sh
+		
 		git clone git@github.com:limianhust/vue-vue-router-webpack.git
-		```
+		
 		
 		Start local server to launch project:
-		```sh
+		
 		cd YourProjectName
 		npm run build
 		npm run start
-		```
+		
 
 打包编译后可以看到dist目录下：
 
