@@ -23,22 +23,20 @@ Install the Rax CLI tools to init project:
 		```
 
 打包编译后可以看到dist目录下：
-		```sh
+
 		|--dist
 		   |--static
-		      |--css
-		         |--app.[hash].css
-		         |--app.[hash].css.map
-		      |--js
-		         |--app.[hash].js
-		         |--app.[hash].js.map
-		         |--mainifest.[hash].js
-		         |--mainifest.[hash].js.map
-		         |--vendor.[hash].js
-		         |--vendor.[hash].js.map
-		
+		   |  |--css
+		   |     |--app.[hash].css
+		   |     |--app.[hash].css.map
+		   |  |--js
+		   |     |--app.[hash].js
+		   |     |--app.[hash].js.map
+		   |     |--mainifest.[hash].js
+		   |     |--mainifest.[hash].js.map
+		   |     |--vendor.[hash].js
+		   |     |--vendor.[hash].js.map
 		   |--index.html
-		```
 所以组件代码集中在 app.js 里，依赖库集中在 vendor.js 里。下面修改配置
 ### 1. 首先修改webpack配置，找到webpack.prod.conf.js文件，
 增加一行代码
@@ -68,3 +66,21 @@ Install the Rax CLI tools to init project:
 
 然后打包，我们就会发现js文件多了两个 0.[hash].js和1.[hash].js文件，
     这就是切割出来的代码。只要用户继续操作进入相应的路由，这两个文件才会请求加载。
+
+		|--dist
+		   |--static
+		   |  |--css
+		   |     |--app.[hash].css
+		   |     |--app.[hash].css.map
+		   |  |--js
+		   |     |--0.[hash].js
+		   |     |--0.[hash].js.map
+		   |     |--1.[hash].js
+		   |     |--1.[hash].js.map
+		   |     |--app.[hash].js
+		   |     |--app.[hash].js.map
+		   |     |--mainifest.[hash].js
+		   |     |--mainifest.[hash].js.map
+		   |     |--vendor.[hash].js
+		   |     |--vendor.[hash].js.map
+		   |--index.html 
