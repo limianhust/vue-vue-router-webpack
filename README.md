@@ -38,20 +38,20 @@ Install dependencies to init project:
 		   |     |--vendor.[hash].js.map
 		   |--index.html
 所以组件代码集中在 app.js 里，依赖库集中在 vendor.js 里。下面修改配置
-### 1. 首先修改webpack配置，找到webpack.prod.conf.js文件，
+### 1. 首先修改webpack配置，找到webpack.base.conf.js文件，
 增加一行代码
 
 
     output: {
-    path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    }
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].js'
+    },
     变成：
     output: {
-    path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
-    }
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].js',
+    chunkFilename: '[name].bundle.js'
+    },
 
 
 然后到router文件夹里找到index.js文件，要切割的组件引入写法：
