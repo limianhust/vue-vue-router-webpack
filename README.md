@@ -5,9 +5,45 @@
 
 ### 懒加载的必要性和实现原理
    大型单页面应用往往代码量庞大，打包后的js文件大小高大几M甚至十几M，从输入网址到页面显现需要加载几M的文件并解析运行，用户等待时间较长，造成不好的用户体验。实际上，页面的首次显示并不需要加载所有的组件代码，甚至有些组件从用户打开网址到关闭网页都不会使用到，那么按某种方式将代码切割并按需加载就能大幅提高加载速度，改善用户体验。单页面的路由是页面状态的主要表征，自然想到按路由来切割代码。
-1. 首先修改webpack配置，找到webpack.prod.conf.js文件，
+
+## Quick Start
+
+Install the Rax CLI tools to init project:
+
+
+		```sh
+		git clone git@github.com:limianhust/vue-vue-router-webpack.git
+		```
+		
+		Start local server to launch project:
+		```sh
+		cd YourProjectName
+		npm run build
+		npm run start
+		```
+
+打包编译后可以看到dist目录下：
+		```sh
+		|--dist
+		   |--static
+		      |--css
+		         |--app.[hash].css
+		         |--app.[hash].css.map
+		      |--js
+		         |--app.[hash].js
+		         |--app.[hash].js.map
+		         |--mainifest.[hash].js
+		         |--mainifest.[hash].js.map
+		         |--vendor.[hash].js
+		         |--vendor.[hash].js.map
+		
+		   |--index.html
+		```
+所以组件代码集中在 app.js 里，依赖库集中在 vendor.js 里。下面修改配置
+### 1. 首先修改webpack配置，找到webpack.prod.conf.js文件，
 增加一行代码
-    
+
+
     output: {
     path: config.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
@@ -18,6 +54,7 @@
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
     }
+
 
 然后到router文件夹里找到index.js文件，要切割的组件引入写法：
 
